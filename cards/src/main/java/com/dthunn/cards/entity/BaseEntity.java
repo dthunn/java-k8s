@@ -1,4 +1,4 @@
-package com.dthunn.accounts.entity;
+package com.dthunn.cards.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -34,4 +34,5 @@ public class BaseEntity {
     @LastModifiedBy
     @Column(insertable = false)
     private String updatedBy;
+
 }
