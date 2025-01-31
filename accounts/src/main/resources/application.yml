@@ -14,3 +14,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related local APIs "
+  contactDetails:
+    name: "Dylan Thunn - Developer"
+    email: "blah@blah.com"
+  onCallSupport:
+    - (555) 555-5555
+    - (555) 523-5555
