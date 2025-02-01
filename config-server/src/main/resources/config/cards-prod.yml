@@ -1,0 +1,11 @@
+build:
+  version: "1.0"
+
+cards:
+  message: "Just a dummy application to learn microservices with java"
+  contactDetails:
+    name: "Dylan Thunn - Developer"
+    email: "blah@blah.com"
+  onCallSupport:
+    - (555) 555-5555
+    - (555) 523-5555
