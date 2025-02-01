@@ -14,3 +14,22 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+      - "application_qa.yml"
+      - "application_prod.yml"
+  profiles:
+    active:
+      - "qa"
+
+build:
+  version: "3.0"
+
+cards:
+  message: "Just a dummy application to learn microservices with java"
+  contactDetails:
+    name: "Dylan Thunn - Developer"
+    email: "blah@blah.com"
+  onCallSupport:
+    - (555) 555-5555
+    - (555) 523-5555
