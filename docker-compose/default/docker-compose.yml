@@ -30,7 +30,7 @@ services:
 #      service: microservice-db-config
 
   configserver:
-    image: "eazybytes/configserver:s7"
+    image: "dthunn/config-server"
     container_name: configserver-ms
     ports:
       - "8071:8071"

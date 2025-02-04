@@ -1,36 +1,36 @@
 services:
-  accountsdb:
-    container_name: accountsdb
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: accountsdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
-
-  loansdb:
-    container_name: loansdb
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_DATABASE: loansdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
-
-  cardsdb:
-    container_name: cardsdb
-    ports:
-      - 3308:3306
-    environment:
-      MYSQL_DATABASE: cardsdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
+  #  accountsdb:
+  #    container_name: accountsdb
+  #    ports:
+  #      - 3306:3306
+  #    environment:
+  #      MYSQL_DATABASE: accountsdb
+  #    extends:
+  #      file: common-config.yml
+  #      service: microservice-db-config
+  #
+  #  loansdb:
+  #    container_name: loansdb
+  #    ports:
+  #      - 3307:3306
+  #    environment:
+  #      MYSQL_DATABASE: loansdb
+  #    extends:
+  #      file: common-config.yml
+  #      service: microservice-db-config
+  #
+  #  cardsdb:
+  #    container_name: cardsdb
+  #    ports:
+  #      - 3308:3306
+  #    environment:
+  #      MYSQL_DATABASE: cardsdb
+  #    extends:
+  #      file: common-config.yml
+  #      service: microservice-db-config
 
   configserver:
-    image: "eazybytes/configserver:s7"
+    image: "dthunn/config-server"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -45,16 +45,16 @@ services:
       service: microservice-base-config
 
   accounts:
-    image: "eazybytes/accounts:s7"
+    image: "dthunn/accounts"
     container_name: accounts-ms
     ports:
       - "8080:8080"
     environment:
       SPRING_APPLICATION_NAME: "accounts"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
+    #      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
     depends_on:
-      accountsdb:
-        condition: service_healthy
+      #      accountsdb:
+      #        condition: service_healthy
       configserver:
         condition: service_healthy
     extends:
@@ -62,16 +62,16 @@ services:
       service: microservice-configserver-config
 
   loans:
-    image: "eazybytes/loans:s7"
+    image: "dthunn/loans"
     container_name: loans-ms
     ports:
       - "8090:8090"
     environment:
       SPRING_APPLICATION_NAME: "loans"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
+    #      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
     depends_on:
-      loansdb:
-        condition: service_healthy
+      #      loansdb:
+      #        condition: service_healthy
       configserver:
         condition: service_healthy
     extends:
@@ -79,16 +79,16 @@ services:
       service: microservice-configserver-config
 
   cards:
-    image: "eazybytes/cards:s7"
+    image: "dthunn/cards"
     container_name: cards-ms
     ports:
       - "9000:9000"
     environment:
       SPRING_APPLICATION_NAME: "cards"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
+    #      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
     depends_on:
-      cardsdb:
-        condition: service_healthy
+      #      cardsdb:
+      #        condition: service_healthy
       configserver:
         condition: service_healthy
     extends:
@@ -96,5 +96,5 @@ services:
       service: microservice-configserver-config
 
 networks:
-  eazybank:
+  dthunn:
     driver: "bridge"
