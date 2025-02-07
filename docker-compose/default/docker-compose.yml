@@ -1,6 +1,6 @@
 services:
   configserver:
-    image: "dthunn/configserver"
+    image: "dthunn/config-server"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -35,7 +35,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "dthunn/accounts8"
+    image: "dthunn/accounts"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -99,5 +99,5 @@ services:
       service: microservice-eureka-config
 
 networks:
-  eazybank:
+  dthunn:
     driver: "bridge"
