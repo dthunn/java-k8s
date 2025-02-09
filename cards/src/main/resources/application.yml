@@ -32,6 +32,9 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 eureka:
   instance:
@@ -45,7 +48,7 @@ eureka:
 info:
   app:
     name: "cards"
-    description: "Eazy Bank Cards Application"
+    description: "Dummy Application"
     version: "1.0.0"
 
 logging:
@@ -53,3 +56,5 @@ logging:
     com:
       dthunn:
         cards: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"

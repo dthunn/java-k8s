@@ -11,7 +11,7 @@ spring:
           lowerCaseServiceId: true
       httpclient:
         connect-timeout: 1000
-        response-timeout: 2s
+        response-timeout: 10s
   data:
     redis:
       connect-timeout: 2s
@@ -30,11 +30,14 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 info:
   app:
     name: "gatewayserver"
-    description: "Eazy Bank Gateway Server Application"
+    description: "Dummy Application"
     version: "1.0.0"
 
 logging:
@@ -42,6 +45,8 @@ logging:
     com:
       dthunn:
         gatewayserver: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 resilience4j.circuitbreaker:
   configs:
