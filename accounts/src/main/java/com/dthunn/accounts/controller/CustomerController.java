@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
         description = "REST APIs in EazyBank to FETCH customer details"
 )
 @RestController
-@RequestMapping(path="/api", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class CustomerController {
 
@@ -31,7 +31,7 @@ public class CustomerController {
 
     private final ICustomersService iCustomersService;
 
-    public CustomerController(ICustomersService iCustomersService){
+    public CustomerController(ICustomersService iCustomersService) {
         this.iCustomersService = iCustomersService;
     }
 
@@ -54,13 +54,14 @@ public class CustomerController {
     }
     )
     @GetMapping("/fetchCustomerDetails")
-    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(@RequestHeader("app-correlation-id")
-                                                                   String correlationId,
-                                                                   @RequestParam @Pattern(regexp="(^$|[0-9]{10})",
-                                                                           message = "Mobile number must be 10 digits")
-                                                                   String mobileNumber) {
-        logger.debug("eazyBank-correlation-id found: {} ", correlationId);
+    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(
+            String correlationId,
+            @RequestParam @Pattern(regexp = "(^$|[0-9]{10})",
+                    message = "Mobile number must be 10 digits")
+            String mobileNumber) {
+        logger.debug("fetchCustomerDetails method start");
         CustomerDetailsDto customerDetailsDto = iCustomersService.fetchCustomerDetails(mobileNumber, correlationId);
+        logger.debug("fetchCustomerDetails method end");
         return ResponseEntity.status(HttpStatus.SC_OK).body(customerDetailsDto);
 
     }
