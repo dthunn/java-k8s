@@ -11,7 +11,10 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.w3c.dom.stylesheets.LinkStyle;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -19,10 +22,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
-        serverHttpSecurity.authorizeExchange(exchanges -> exchanges.anyExchange().permitAll()
-                        .pathMatchers("/app/accounts/**").hasRole("ACCOUNTS")
-                        .pathMatchers("/app/cards/**").hasRole("CARDS")
-                        .pathMatchers("/app/loans/**").hasRole("LOANS"))
+        serverHttpSecurity.authorizeExchange(exchanges -> exchanges.pathMatchers(HttpMethod.GET).permitAll()
+                        .pathMatchers("/app/accounts/**").authenticated()
+                        .pathMatchers("/app/cards/**").authenticated()
+                        .pathMatchers("/app/loans/**").authenticated())
                 .oauth2ResourceServer(oAuth2ResourceServerSpec -> oAuth2ResourceServerSpec
                         .jwt(jwtSpec -> jwtSpec.jwtAuthenticationConverter(grantedAuthoritiesExtractor())));
         serverHttpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable);

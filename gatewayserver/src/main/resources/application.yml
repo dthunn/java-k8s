@@ -12,7 +12,6 @@ spring:
       httpclient:
         connect-timeout: 1000
         response-timeout: 10s
-        helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
   data:
     redis:
       connect-timeout: 2s
