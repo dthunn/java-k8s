@@ -10,11 +10,6 @@ services:
       resources:
         limits:
           memory: 700m
-    environment:
-      JAVA_TOOL_OPTIONS: "-javaagent:/app/libs/opentelemetry-javaagent-2.11.0.jar"
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo:4318
-      OTEL_METRICS_EXPORTER: none
-      OTEL_LOGS_EXPORTER: none
 
   microservice-configserver-config:
     extends:
@@ -28,4 +23,5 @@ services:
       service: microservice-configserver-config
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
+#      docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.1.1 start-dev
 #      docker run -p 3306:3306 --name accountsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=accountsdb -d mysql
