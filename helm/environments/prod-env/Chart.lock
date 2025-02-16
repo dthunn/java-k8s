@@ -1,0 +1,27 @@
+dependencies:
+- name: app-common
+  repository: file://../../app-common
+  version: 0.1.0
+- name: configserver
+  repository: file://../../app-services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../app-services/eurekaserver
+  version: 0.1.0
+- name: accounts
+  repository: file://../../app-services/accounts
+  version: 0.1.0
+- name: cards
+  repository: file://../../app-services/cards
+  version: 0.1.0
+- name: loans
+  repository: file://../../app-services/loans
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../app-services/gatewayserver
+  version: 0.1.0
+- name: message
+  repository: file://../../app-services/message
+  version: 0.1.0
+digest: sha256:e3aa4091ad8edb062a5b93cd6621a01e6a5ad50973a2678e5b741b975a48df4a
+generated: "2025-02-15T10:40:07.612503-07:00"
